@@ -11,9 +11,9 @@ const MAP={};
 let access_token=null;
 let usernameUser=null;
   //FACCIO LA FETCH RICHIEDNO API GET//
-  fetch("http://localhost/yourPrj/public/ajax_apiGET/"+pagina).then(onResponseApiKey).then(onJsonApiKey);
+  fetch("ajax_apiGET/"+pagina).then(onResponseApiKey).then(onJsonApiKey);
   //RICHIEDO IL TOKEN//
-  fetch("http://localhost/yourPrj/public/ajax_apiPostRequestToken").then(onSuccessToken).then(onJsonToken);
+  fetch("ajax_apiPostRequestToken").then(onSuccessToken).then(onJsonToken);
   checkUser();
  //All'apertura della pagina, richiediamo L'ACCESSO TRAMITE APIKEY A PIXELBAY
 //RICHIEDO IL TOKEN AL CARICAMENTO DELLA PAGINA//
@@ -39,15 +39,15 @@ let usernameUser=null;
 
   //VEDO SE L'UTENTE E REGISTRATO AL CARICAMENTO DELLA PAGINA//
   function checkUser(){
-    fetch("http://localhost/yourPrj/public/check_sessione").then(sessionResponse).then(usernameJson);
+    fetch("check_sessione").then(sessionResponse).then(usernameJson);
   }
 
 
 
-    
 
-  
-  
+
+
+
 
   function refreshJson(json){
     let quantitaNuova;
@@ -77,18 +77,18 @@ let usernameUser=null;
           }
             }
 }
-  
-  
+
+
   function refreshResponse(response){
     return response.json();
   }
-  
-  
+
+
   //OGNI 3 SECODNI AGGIORNO LA VISUALIZZAZIONE DELLA QUANTITA DISPONIBILE ED IN CASO FACCIO SPUNTARE PRODOTTO NON DISPONIBILE//
   function refreshQuantity(){
-  fetch("http://localhost/yourPrj/public/ajax_AggiornaProdotti/"+pagina).then(refreshResponse).then(refreshJson);
+  fetch("ajax_AggiornaProdotti/"+pagina).then(refreshResponse).then(refreshJson);
   }
-  
+
 
 
 
@@ -104,13 +104,13 @@ let usernameUser=null;
     divnew.appendChild(error);
     sleep(1500).then(() => {
     error.remove();
-}); 
+});
  }
-  
+
   function responseInsertCarrello(response){
      return response.json();
   }
-  
+
 
   function insertcarrello(event){
     const preferbutton=event.currentTarget;
@@ -124,10 +124,10 @@ let usernameUser=null;
       divnew.appendChild(error);
       sleep(1500).then(() => {
         error.remove();
-     }); 
+     });
       }
     else
-    fetch("http://localhost/yourPrj/public/ajax_dbInsertCarrello/"+id_prodotto+"/"+quantita).then(responseInsertCarrello).then(jsonInsert);
+    fetch("ajax_dbInsertCarrello/"+id_prodotto+"/"+quantita).then(responseInsertCarrello).then(jsonInsert);
   }
   let divnew=null;
   //PARTE CHE PERMETTE INSERIMENTO NEL CARRELLO
@@ -169,7 +169,8 @@ function onJsonApiKey(json)
   function onResponseApiKey(response) {
     return response.json();
   }
- 
+
+
 //PARTE REST API KEY//
 
 
@@ -177,7 +178,7 @@ function onJsonApiKey(json)
 
 //DAL JSON OTTENUTO ESTRAGGO L SRC DEL VIDEO ED CREO UN COMPONENTE IFRAME CON TALE SRC//
 function onJsonTokenVideo(json){
-  console.log(json);
+  //console.log(json);
   const listvideo=json.data;
   const video=listvideo[videonumber];
   const link=video.link;
@@ -214,7 +215,7 @@ function onModalDisplay(event){
  const title=casella.querySelector(".title h1").textContent;
  //ESEGUO LA FETCH PASSANDO COME PARAMETRO IL TITOLO DEL DIV CLICCATO//
  // All'apertura della pagina, richiediamo il token
- fetch("http://localhost/yourPrj/public/ajax_apiOauth/"+access_token+"/"+title).then(onTokenVideoSuccess).then(onJsonTokenVideo);
+ fetch("ajax_apiOauth/"+access_token+"/"+title).then(onTokenVideoSuccess).then(onJsonTokenVideo);
  modalview.style.top=window.pageYOffset+'px';
  modalview.classList.remove("hidden");
  body.classList.add("noscroll");
@@ -251,7 +252,7 @@ function onSuccessToken(response){
   function onSearchResponse(response){
     return response.json();
   }
-  
+
   function showsearch(event){
     const searchbox=event.currentTarget;
     let filter=searchbox.value.toUpperCase();
@@ -259,7 +260,7 @@ function onSuccessToken(response){
     if(lunghezza==0){
         filter="vuoto";
     }
-    fetch("http://localhost/yourPrj/public/ajax_dbsearchbar/"+pagina+"/"+filter).then(onSearchResponse).then(onJsonDb);
+    fetch("ajax_dbsearchbar/"+pagina+"/"+filter).then(onSearchResponse).then(onJsonDb);
   }
 
 
@@ -272,8 +273,8 @@ function onSuccessToken(response){
     const bottonemore=casella.querySelector("span");
     bottonemore.classList.remove("hidden");
   }
-  
-  
+
+
   function showMoreJson(json){
     const descrizione=document.createElement("p");
     const prezzo=document.createElement("h3");
@@ -317,20 +318,20 @@ function onSuccessToken(response){
     div.appendChild(bottoneless);
     bottoneless.addEventListener('click',showless);
   }
-  
-  
+
+
   function showmoreResponse(response){
     return response.json();
   }
-  
-  
+
+
   function showmore(event){
     const bottonemore=event.currentTarget;
     flexitemcliccato=bottonemore.parentNode;
     const id_prodotto=flexitemcliccato.dataset.element;
     console.log(id_prodotto);
     bottonemore.classList.add("hidden");
-    fetch("http://localhost/yourPrj/public/ajax_dbShowProdotto/"+id_prodotto).then(showmoreResponse).then(showMoreJson);
+    fetch("ajax_dbShowProdotto/"+id_prodotto).then(showmoreResponse).then(showMoreJson);
   }
   let flexitemcliccato=null;
 
@@ -346,7 +347,7 @@ function onSuccessToken(response){
   if(figli.length==1){
     preferiti.classList.add("hidden");
   }
-    fetch("http://localhost/yourPrj/public/ajax_dbremovePreferiti/"+id_prodotto).then(queryDBprefer);
+    fetch("ajax_dbremovePreferiti/"+id_prodotto).then(queryDBprefer);
 }
 
 
@@ -377,17 +378,17 @@ function onSuccessToken(response){
     flexitem.appendChild(imgdesc);
    }
   }
-  
-  
+
+
   function responsePreferiti(response){
     return response.json();
   }
-  
-  
+
+
   function queryDBprefer(){
     //QUESTA VERRA ESEGUITA SE L'UTENTE E REGISTRATO//
     if(usernameUser){
-  fetch("http://localhost/yourPrj/public/ajax_dbpreferitishow/"+pagina).then(responsePreferiti).then(onJsonDbPreferiti);
+  fetch("ajax_dbpreferitishow/"+pagina).then(responsePreferiti).then(onJsonDbPreferiti);
   }
   if(usernameUser===null){
     //SE L'UTENTE NON E REGISTRATO VIENE VISUALIZZATO QUESTO//
@@ -396,7 +397,7 @@ function onSuccessToken(response){
     text.textContent="REGISTRATI PER GESTIRE I PREFERITI E IL CARRELLO";
   }
   }
-  
+
 
 
 
@@ -404,7 +405,7 @@ function onSuccessToken(response){
      const preferbutton=event.currentTarget;
      const casella=preferbutton.parentNode.parentNode;
      const id_prodotto=casella.dataset.element;
-     fetch("http://localhost/yourPrj/public/ajax_dbInsertpreferiti/"+id_prodotto).then(queryDBprefer);
+     fetch("ajax_dbInsertpreferiti/"+id_prodotto).then(queryDBprefer);
   }
 
 
@@ -453,15 +454,14 @@ function onJsonDb(json){
       bottonemore.addEventListener('click',showmore);
    }
    }
- 
- 
- 
+
+
+
  function responseAggiorna(response){
    return response.json();
  }
- 
+
  function aggiornaProdotti(){
    //RICHIEDE LA LISTA DEGLI EVENTI AD UNA PAGINA PHP TRAMITE ajax
-   fetch("http://localhost/yourPrj/public/ajax_AggiornaProdotti/"+pagina).then(responseAggiorna).then(onJsonDb);
+   fetch("ajax_AggiornaProdotti/"+pagina).then(responseAggiorna).then(onJsonDb);
  }
- 

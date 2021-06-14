@@ -69,7 +69,7 @@ function checkUsername(event){
 		varUsernameError=true;
 	}else{
 		const usernamecheck=encodeURIComponent(usernamevalore);
-		fetch("http://localhost/yourPrj/public/ajax_checkUsername/"+usernamecheck).then(usernamecheckResponse).then(usernamecheckJson);
+		fetch("ajax_checkUsername/"+usernamecheck).then(usernamecheckResponse).then(usernamecheckJson);
 	}
 }
 
@@ -151,7 +151,7 @@ if(emailvalore.indexOf("@")==-1){
 	//SE LA CHIOCCIOLA LA HA CONTROLLO NEL DATABASE//
 else{
 const emailcheck=encodeURIComponent(emailvalore);
-fetch("http://localhost/yourPrj/public/ajax_checkEmail/"+emailcheck).then(emailcheckResponse).then(emailcheckJson);
+fetch("ajax_checkEmail/"+emailcheck).then(emailcheckResponse).then(emailcheckJson);
 }
 }
 

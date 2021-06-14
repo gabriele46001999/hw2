@@ -4,7 +4,7 @@ const testosearchbox=document.querySelector(".searchbox h1");
 const parametro=testosearchbox.textContent;
 const parametroquery=parametro.substr(13,8);
 //All'apertura della pagina, richiediamo L'ACCESSO TRAMITE APIKEY A PIXELBAY PASSANDO COME PARAMETRO CARRELLO//
-fetch("http://localhost/yourPrj/public/ajax_apiGET/"+parametroquery).then(onResponseApi).then(onJsonApi);
+fetch("ajax_apiGET/"+parametroquery).then(onResponseApi).then(onJsonApi);
 
 
 //PARTE REST API KEY//
@@ -64,7 +64,7 @@ function onResponseAcquista(response){
 
 //FUNZIONE CHE QUANDO VIENE CHIAMATA SVUOTA LA SECTION DICE AL UTENTE CHE TUTTO E STATO ACQUISTATO(SE VI E IL PAGAMENTO),ED ELIMINA DAL DATABASE TUTTI GLI ELEMENTI DEL UTENTE//
 function acquista(event){
-  fetch("http://localhost/yourPrj/public/ajax_dbAcquistaCarrello").then(onResponseAcquista).then(onJsonResponseAcquista);
+  fetch("ajax_dbAcquistaCarrello").then(onResponseAcquista).then(onJsonResponseAcquista);
 }
 
 
@@ -76,7 +76,7 @@ function deleteItem(event){
   const divtitle=deletebutton.parentNode;
   const itempreferiti=divtitle.parentNode;
   const id_prodotto=itempreferiti.dataset.element;
-  fetch("http://localhost/yourPrj/public/ajax_dbRemoveItemCarrello/"+id_prodotto).then(aggiornaCarrello);
+  fetch("ajax_dbRemoveItemCarrello/"+id_prodotto).then(aggiornaCarrello);
 }
 
 //FUNZIONE CHE AL CLICK SUL TASTO UNLIKE DECREMENTA DI UNO LA QUANTITA//
@@ -85,7 +85,7 @@ function decQuantitaItem(event){
       const divtitle=dislike.parentNode;
       const itempreferiti=divtitle.parentNode;
       const id_prodotto=itempreferiti.dataset.element;
-      fetch("http://localhost/yourPrj/public/ajax_dbDecQuantitaCarrello/"+id_prodotto).then(aggiornaCarrello);
+      fetch("ajax_dbDecQuantitaCarrello/"+id_prodotto).then(aggiornaCarrello);
   }
 
 
@@ -94,7 +94,7 @@ function decQuantitaItem(event){
     const divtitle=like.parentNode;
     const itempreferiti=divtitle.parentNode;
     const id_prodotto=itempreferiti.dataset.element;
-    fetch("http://localhost/yourPrj/public/ajax_dbAddQuantitaCarrello/"+id_prodotto).then(aggiornaCarrello);
+    fetch("ajax_dbAddQuantitaCarrello/"+id_prodotto).then(aggiornaCarrello);
   }
 
 
@@ -172,5 +172,5 @@ function responseAggiorna(response){
 
 function aggiornaCarrello(){
   //RICHIEDE LA LISTA DEGLI EVENTI AD UNA PAGINA PHP TRAMITE ajax
-  fetch("http://localhost/yourPrj/public/ajax_dbShowcarrello").then(responseAggiorna).then(onJsonDb);
+  fetch("ajax_dbShowcarrello").then(responseAggiorna).then(onJsonDb);
 }

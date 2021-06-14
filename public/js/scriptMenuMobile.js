@@ -97,6 +97,5 @@ function sessionResponse(response){
 
 //VEDO SE L'UTENTE E REGISTRATO AL CARICAMENTO DELLA PAGINA//
 function session(){
-  fetch("http://localhost/yourPrj/public/check_sessione").then(sessionResponse).then(usernameJson);
+  fetch("check_sessione").then(sessionResponse).then(usernameJson);
 }
-
