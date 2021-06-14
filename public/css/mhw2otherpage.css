@@ -1,0 +1,548 @@
+body {
+  margin: 0px;
+  background-color:white;
+}
+
+header {
+  height:500px;
+  width: 100%;
+  background-image: url("");
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /*ALLINEMANETO ORIZZONTALE CENTRATO*/
+  align-items: center;
+  /*ALLINEAMENTO VERTICALE CENTRATO*/
+  justify-content: center;
+  color:white;
+  line-height: 1.2;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+}
+
+
+/*CON ABSOLUTE DIAMO UNA POSIZIONE FISSATA ALL'INTERNO DEL ELEMENTO CHE LO CONTINE HEADER CHE E RELATIVE,IN TAL MODO OTTENGO L'IMMAGINE DI SFONDO*/
+#overlay {
+  background-color:rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  bottom:0;
+  height: 100%;
+  width: 100%;
+}
+
+/*PROPRIETA DELL'HEADER SE SIAMO SU MOBILE*/
+@media (max-width: 500px) {
+  header {
+    height: 50%;
+    line-height: 1.5;
+  }
+}
+
+/*FLEX-CONTINER PER RIGHE CHE CONTIENE LOGO E I LINK*/
+header nav {
+  /*COSI DICIAMO CHE SARA SOPRA L'OVERLAY*/
+  z-index: 1;
+  /*ALTEZZA 20% DEL HEADER E LARGHEZZA 100%*/
+  height: 20%;
+  /*POSIZIONE FISSATA ALL'INTERNO DI HEADER CHE LO CONTIENE*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding-left: 20px;
+  display: flex;
+  /*ELEMENTI SPAZIATI TRA DI LORO(LOGO E LINK)*/
+  justify-content: space-between;
+  /*ALLINEAMENTO VERTICALE AL CENTRO*/
+  align-items:center;
+}
+
+
+
+/*AL ELEMENTO CON ID LOGO DIAMO UN FONT TRAMITE GOOGLE FONT*/
+#logo {
+  font-size: 30px;
+  text-align: left;
+  font-family: 'Dancing Script', cursive;
+}
+
+
+@media (max-width: 500px) {
+	#logo {
+    /*RISPETTO AL FONT SIZE DI LOGO SARA 1.5 VOLTE PIU GRANDE*/
+	  font-size: 1.5em;
+	}
+}
+
+
+/*DIV CON TALE CLASSE CHE CONTIENE I LINK HA TALI MARGINI*/
+.flex-itemnav{
+  margin-left:50px;
+  margin-right:50px;
+}
+
+/*PROPRIETA CHE DIAMO A OGNI ELEMENTO A DENTRO CLASSE .FLEXITEMNAV*/
+.flex-itemnav a{
+  color:white;
+  padding: 2.5px 20px 2.5px 20px;
+  border-radius: 40px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/*EFFETTO GRAFICO SE PASSIAMO CON IL MOUSE SU UN LINK*/
+.flex-itemnav a:hover{
+  background-color: #ffffff;
+  color:#000000;
+}
+
+/*PROPRIETA AL H1 DENTRO HEADER*/
+header h1{
+  /*COSI DICIAMO CHE SARA SOPRA L'OVERLAY*/
+  z-index: 1;
+  font-family: Helvetica, sans-serif;
+  font-size: 35px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-transform: uppercase;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-top: 23px;
+  margin-bottom: 23px;
+}
+
+/*PROPRIETA SE SIAMO SU MOBILE*/
+@media (max-width: 500px) {
+  header h1{
+    font-size: 20px;
+    margin-top: 220px;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+}
+
+
+
+/*IL DIV CHE CONTIENE LE 3 RIGHE INIZIALMENTE NASCOSTO*/
+#menu{
+  display: none;
+}
+
+
+/*CSS PER POTERE AVERE LE 3 RIGHE BIANCHE*/
+#menu .linemobile{
+  width: 25px;
+  height: 3px;
+  background-color:white;
+  margin:2.5px 2.5px 2.5px 2.5px;
+}
+
+
+
+/*PROPRIETA PER ANDARE A GESTIRE IL MENU SU MOBILE*/
+@media(max-width:500px){
+  /*SE SIAMO SU MOBILE NASCONDIAMO IL CONTENITORE CHE CONTIENE LINK WEB*/
+.flex-itemnav{
+    display: none;
+  }
+  #menu{
+    display: block;
+    margin-right:30px;
+  }
+/*DIV CON TALE CLASSE E IL CONTENITORE DEI LINK MOBILE*/
+ .linkmobile{
+    display: flex;
+    flex-direction: column;
+    position:absolute;
+    top:0px;
+    right:-5px;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+
+  .linkmobile a,.linkmobile span{
+    color:white;
+    padding: 2.5px 20px 2.5px 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  .linkmobile a:hover,.linkmobile span:hover{
+    background-color: #ffffff;
+    color:#000000;
+  }
+}
+/*FIN QUA CODICE HEADER*/
+
+
+
+
+/*CODICE RELATIVO AL DIV PREFERITI */
+.preferiti h1{
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  /*2 VOLTE QUELLO DEL H1*/
+  font-size: 2em;
+  letter-spacing: 2;
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  background-color:rgb(70,70,70);
+}
+
+/*METTE PER RIGA FINO A QUANDO CE SPAZIO*/
+.preferiti-container{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/*UN PREFERITO AVRA LARGHEZZA  BEN DEFIITA E ALTEZZA IN BASE AI CONTENUTI*/
+.item-preferiti{
+  display: flex;
+  flex-direction: column;
+  width: 220px;
+  margin: 15px 20px 15px 20px;
+}
+
+/*SE SIAMO SU MOBILE LARGHEZZA PIU PICCOLA COSI*/
+@media(max-width:500px){
+	.item-preferiti{
+	   width:190px;
+	}
+}
+
+.item-preferiti .title{
+  display: flex;
+  /*SPZIO TRA H1 E IMAGINE UNLINE(ORIZZONTALMENTE ASSE X)*/
+  justify-content:space-between;
+  /*ALLINEAMENTO VERTICALE(ASSE Y) FLEX START*/
+  align-items: flex-start;
+  /*LARGHEZZA 100%*/
+  width: 100%;
+}
+
+
+
+.item-preferiti .title h1{
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  height: 40px;
+  font-size: 16px;
+  /*LARGHEZZA 90% DI 220=180*/
+  width: 90%;
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+  text-transform: uppercase;
+  background-color:white;
+  /*LETTERE VICINE*/
+  letter-spacing: 0;
+  color: black;
+}
+
+
+@media(max-width:500px){
+	.item-preferiti .title h1{
+    /*SE SIAMO SU MOBILE  80% DI 190=150 */
+	   width:80%;
+	}
+}
+
+/*L'IMAGINE UNLIKE GLI DO 40*4O COSI CI ENTRA*/
+.item-preferiti .title img{
+  height:40px;
+  width:40px;
+}
+
+/*AVRA LARGHEZZA 100% DEL FLEXITEM E ALTEZZA 150*/
+.item-preferiti img{
+  height: 150px;
+  width: 100%;
+}
+
+
+/*CODICE RELATIVO AL DIV searchbox*/
+.searchbox{
+  /*ELEMENTI DISPOSTI PER RIGA(TESTO E DIV CHE CONTIENE INPUT E IMG SPAZIATI TRA LORO)*/
+  display: flex;
+  /*ORIZZONTALMENTE ASSE X*/
+  justify-content: space-between;
+  background-color:rgb(70,70,70);
+  color:white;
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: bold;
+  font-style: oblique;
+  margin-bottom: 20px;
+}
+
+/*SE SIAMO SU MOBILE DISPOSTO PER COLONNA */
+@media(max-width:500px){
+.searchbox{
+  flex-direction: column;
+  /*ALLINEMANTO ORIZZONTALE AL CENTRO*/
+  align-items: center;
+  /*ALLINEAMENTO VERTICALE*/
+  justify-content:center;
+}
+}
+
+/*RIDEFINISCO I MARGINI PER H1 SENNO SI PRENDE QUELLI DI DEFAULT,LE PROPRIETA TESTUALI VENGONO DERIVATE DA SEARCHBOX,LE PROPRIETA COME MARGIN E PADDING NON SONO EREDITATE*/
+.searchbox h1{
+  margin-top:20px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+
+/*SE SIAMO SU MOBILE METTO PADDIN E MARGIN A 0PX E AUMENTO IL FONT  SIZE*/
+@media(max-width:500px){
+.searchbox h1{
+    padding: 0px;
+    margin: 0px;
+    font-size: 25px;
+  }
+}
+/*DIV CHE CONTIENE INPUT E IMG HA DISPLAY FLEX ORIENTATO PER RIGA*/
+#searchbox-item{
+  display: flex;
+}
+
+
+#searchbox-item input{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 60px;
+  width: 200px;
+}
+
+
+#searchbox-item img{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  margin-left: 0px;
+  height:60px;
+  width: 60px;
+}
+
+
+/*CODICE RELATIVO ALLA SECTION*/
+/*SEPARTO DA 30PX DAL SEARCHBOX E 30PX DAL FOOTER*/
+/*ELEMENTI DISPOSTI PER RIGA FINCHE CE SPAZIO */
+.flex-section{
+  margin-top:30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  /*ORIENTAMENTO VERTICALE(ASSE Y) CENTRO*/
+  align-items: center;
+  /*ORIENTAMENTO ORIZZONTALE SPAZIATO UNIFORME ANCHE DAI LATI*/
+  justify-content: space-around;
+  font-size: 20px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+  font-style: oblique;
+}
+
+/*SE SIAMO SU MOBILE METTIAMO GLI ELEMENTI PER COLONNA*/
+@media(max-width:500px){
+.flex-section{
+  flex-direction: column;
+  }
+}
+
+/*PROPRIETA DI UN SINGOLO ELEMENTO*/
+/*ELEMENTI AL SUO INTERNO DISPOSTI PER COLONNA ORIENTAMENTO VERTICALE INIZIO FLEX,ORIENTAMENTO ORIZZONTALE CENTRATO*/
+.flex-itemsection{
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  padding: 15px 5px 15px 5px;
+  text-align: left;
+}
+
+
+/*SE SIAMO SU MOBILE LA LARGHEZZA LA IMPOSTO A 94 PERCHE LA SECTION E DISPOSTA PER COLONNA E LASCIO PERO 6% PER IL PADDING*/
+@media(max-width:500px){
+  .flex-itemsection{
+  width:94%;
+}
+}
+
+/*DIV CHE CONTIENE H1 E IMG LIKE*/
+/*ALLINEAMENTO VERTICALE INZIO FLEX*/
+/*ALLINEAMENTO ORIZONTALE SPAZIO TRA H1 E IMG*/
+.flex-itemsection .title{
+  display: flex;
+  justify-content:space-between;
+  align-items: flex-start;
+}
+
+
+/*TITOLO IN MAIUSCOLO E CON UN PADDING A SINSTRA 5PX*/
+.flex-itemsection .title h1{
+  text-transform: uppercase;
+  margin:0px 5px 0px 5px;
+}
+
+/*IMG LIKE*/
+.flex-itemsection .title img{
+  height:40px;
+  width:40px;
+}
+
+/*IMMAGINE DEL PRODOTTO*/
+.flex-itemsection img{
+  width:350px;
+  height:220px;
+}
+
+.flex-itemsection p{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ 
+.flex-itemsection .button{
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: bold 15px Arial, Helvetica, sans-serif;
+  border-radius:5px;
+  padding:20px 25px;
+  background-color: rgb(106, 255, 228);
+  color: black;
+  margin-top: 10px;
+  }
+
+  .flex-itemsection .button:hover{
+          background-color:rgba(102,248,221,0.9);
+    }
+
+/*PROPRIETA AL DIV INFORMATION CHE CONTIENE PREZZO DESCRIZIONE ECC*/
+/*LO METTO 300 PERCHE ESSENDO IMG 350 LO METTO UN PO PIU PICCOLO*/
+/*ORIENTATO PER COLONNA E ASSE X INIZIO FLEX*/
+.information{
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+}
+
+/*HO UN DIV CHE CONTIENE INPUT TYPE E IMG CARRELLO E PRENDERE ALTEZZA E LARGHEZZA IN BASE AGLI ELEMENTI CHE CONTIENE*/
+.information div{
+  flex-direction: row;
+}
+
+@media(max-width:500px){
+  .flex-itemsection div input{
+    margin-left: 2px;
+}
+}
+
+.information div img{
+  /*TALI MARGIN SERVONO PER ALLINEARLO*/
+  margin-left: 10px;
+  height:30px;
+  width: 30px;
+  margin-bottom: -6px;
+}
+
+
+
+
+/*PROPRIETA CHE SI APPLICANO AD P,H3* DENTRO INFORMATION*/
+.flex-itemsection .information p,.flex-itemsection .information h3{
+  width:90%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color:black;
+}
+
+
+
+
+/*CODICE CSS PER IMPLEMENTARE LA MODALE*/
+.modal-view{
+	/*SECTION MODAL-VIEW SARA DISPOSTA PER COLONNA E GLI ELEMENTI SARANNO CENTRATI VERTICALMENTE E ORIZZONTALMENTE*/
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+  /*RISPETTO AL ELEMENTO CHE LO CONTIENE IL BODY HA UNA POSIZIONE 0 TOP 0 LEFT E POI ALTEZZA E LARGHEZZA 100VIEWPORT*/
+  position: absolute;
+  top:0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  /*AVRA UNA LEGGERA SFOCATURA E SARA MESSO IN RISALTO TRAMITE Z-INDEX 2*/
+  background-color: rgba(0,0,0,0.6);
+  z-index: 2;
+}
+
+/*METTO ELEMENTO H1(PER COMUNICARE AL UTENTE CHE IL CONTENUTO MULTIMEDIALE STA VENENDO ESEGUITO*/
+.modal-view h1{
+   color:white;
+   padding: 20px;
+   margin: 20px;
+   font-family: 'Oswald', sans-serif;
+}
+
+/*CSS APPLICATO PER IL COMPONENTE IFRAME CHE PERMETTE DI VISUALIZZARE IL VIDEO*/
+.modal-view iframe{
+  max-height: 100%;
+  max-width: 100%;
+  width:640px;
+  height:360px;
+}
+
+/*CSS APPLICATO PER EVITARE LO SCROLL DEL BODY*/
+.noscroll{
+  overflow: hidden;
+}
+
+
+
+
+        /*CODICE FOOTER*/
+    footer{
+      display: flex;   /*FLEX CONTAINER*/
+      flex-direction: column;     /*ELEMENTI DISPOSTI PER COLONNA COSI UNO SOTTO L'ALTRO*/
+      align-items: center;
+      width: 100%;          /*LARGHEZZA 100% DELLA VIEW*/
+      background-color: rgb(70,70,70);  /*CAMBIO COLORE DI SFONDO*/
+      line-height: 1.2;
+      font-weight: bold;  /*GRASETTO*/
+      font-family: 'Yanone Kaffeesatz', sans-serif;
+    }
+
+    footer h1{
+      color:white;
+      padding-left: 20px;
+      font-size: 30px;
+      margin: 0px;
+      font-family: 'Dancing Script', cursive;
+    }
+
+    footer p{
+      font-size: 20px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      color:white;
+    }
+
+  /*CLASSE HIDDEN DA USARE PER MOSTRARE O MENO GLI ELEMENTI*/
+    .hidden{
+      display: none;
+    }
