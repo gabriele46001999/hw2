@@ -9,7 +9,7 @@
 @endsection 
 
 
-@section('divParticular')
+@section('divMore')
 <div id="divErroreAcquistaContainer">
 </div>
 @endsection

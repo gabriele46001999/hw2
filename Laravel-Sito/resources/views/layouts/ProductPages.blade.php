@@ -8,6 +8,7 @@
         @show
         @section('js')
         <script src='{{url("js/scriptMenuMobile.js")}}' defer></script>
+        <script src='{{url("js/scripter.js")}}' defer></script>
         @show
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">

@@ -1,4 +1,4 @@
-@extends('layouts.ciccio')
+@extends('layouts.OtherPages')
 @section('h1text','Incuriosisciti di vedere  tutte le nostre novita')
 @section('css')
     <link rel="stylesheet" href="{{ url('css/home.css') }}">
