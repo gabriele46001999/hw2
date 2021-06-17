@@ -181,7 +181,6 @@ function onJsonTokenVideo(json){
   //console.log(json);
   const listvideo=json.data;
    //NELLA MAP  HO UN NUMBER PER OTTENERE UN VIDEO ESATTO//
-  let videonumber=MAP[casella.dataset.element];
   const video=listvideo[videonumber];
   const link=video.link;
   //ESTRATTO DAL LINK OTTENUTO DAL JSON IL NUMERO CHE IDENTIFICA IL VIDEO//
@@ -213,6 +212,7 @@ function onModalClick(event){
 function onModalDisplay(event){
  const casella=event.currentTarget.parentNode;
  const title=casella.querySelector(".title h1").textContent;
+ videonumber=MAP[casella.dataset.element];
  //ESEGUO LA FETCH PASSANDO COME PARAMETRO IL TITOLO DEL DIV CLICCATO//
  // All'apertura della pagina, richiediamo il token
  fetch("ajax_apiOauth/"+access_token+"/"+title).then(onTokenVideoSuccess).then(onJsonTokenVideo);
@@ -225,6 +225,7 @@ function onModalDisplay(event){
  //METTO UN LISTENER SULLA MODALE CHE AL CLICK LA FARA CHIUDERE//
  modalview.addEventListener('click',onModalClick);
 }
+let videonumber=0;
 const body=document.querySelector("body");
 const modalview=document.querySelector(".modal-view");
 modalview.classList.add("hidden");
